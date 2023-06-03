@@ -8,16 +8,22 @@ export class Effect {
   numberofParticles: number;
   ctx: CanvasRenderingContext2D;
   mouse: { x: number; y: number; pressed: boolean; radius: number };
-  constructor(
-    canvas: HTMLCanvasElement,
-    ctx: CanvasRenderingContext2D,
-    mouseRadius: number = 150
-  ) {
+  constructor({
+    canvas,
+    ctx,
+    mouseRadius = 150,
+    numberOfParticles = 300,
+  }: {
+    canvas: HTMLCanvasElement;
+    ctx: CanvasRenderingContext2D;
+    mouseRadius?: number;
+    numberOfParticles?: number;
+  }) {
     this.canvas = canvas;
     this.width = this.canvas.width;
     this.height = this.canvas.height;
     this.particles = [];
-    this.numberofParticles = 300;
+    this.numberofParticles = numberOfParticles;
     this.ctx = ctx;
     this.createParticles();
     this.applyGradient();
