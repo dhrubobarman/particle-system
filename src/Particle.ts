@@ -10,8 +10,9 @@ export class Particle {
   pushX: number;
   pushY: number;
   friction: number;
+  gravity: number;
   constructor(effect: Effect) {
-    this.radius = Math.floor(Math.random() * 12 + 2);
+    this.radius = Math.floor(Math.random() * 7 + 3);
     this.effect = effect;
     this.x =
       this.radius + Math.random() * (this.effect.width - this.radius * 2);
@@ -21,7 +22,8 @@ export class Particle {
     this.vy = Math.random() * 1 - 0.5;
     this.pushX = 0;
     this.pushY = 0;
-    this.friction = 0.95;
+    this.friction = 1 - (1 - 1 / this.radius) * this.effect.friction;
+    this.gravity = 0.95;
   }
   draw(ctx: CanvasRenderingContext2D) {
     ctx.beginPath();
